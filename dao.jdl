@@ -1,0 +1,194 @@
+entity ApplicationUser {
+}
+
+
+entity AllTimeUserAnalytics {
+    totalStudyTime Integer
+    totalPomodoroSession Integer,
+    dailyStreaks Integer,
+    mostFocusedPeriod Instant,
+    taskCompletionRate Float
+    averageFocusDuration Integer,
+    focusCount Integer,
+    totalFocusDuration Integer,
+    sessionRecord Integer,
+    totalBreakTime Integer,
+    averageBreakDuration Integer,
+}
+
+
+entity SessionAnalytic {
+    sessionDuration Integer,
+    taskTotal Integer,
+    taskCompleted Integer,
+    pointsGained Integer,
+    numOfPomodoroFinished Integer,
+    praiseCount Integer,
+}
+
+
+entity Session {
+    title String,
+    joinCode String,
+    userIdList String,
+    startTime Instant,
+    endTime Instant,
+}
+
+
+entity Message {
+    content String,
+    sentTime Instant,
+    status MessageStatus,
+    hasAttachment Boolean,
+    isPinned Boolean
+}
+
+
+entity Attachment {
+    filename String,
+    fileUrl String,
+    type AttachmentType,
+}
+
+
+entity Praise {
+    praiseMessage String,
+}
+
+
+entity KanbanBoard {
+    title String
+    description String
+}
+
+
+entity KanbanTask {
+    title String,
+    description String,
+    taskStatus TaskStatus,
+    dueDate Instant,
+}
+
+
+entity KanbanTaskComment {
+    content String,
+    timeStamp Instant
+}
+
+
+entity KanbanLabel {
+    name String,
+    colour String pattern(/#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})/)
+}
+
+
+entity Milestone {
+    requiredHours Integer,
+    achievements String,
+}
+
+
+entity Reward {
+    title String,
+    description String,
+    rewardUrl String,
+}
+
+
+entity PomodoroTimer{
+    startTime Instant,
+    endTime Instant,
+    state TimerState,
+    type TimerType,
+    Duration Duration,
+}
+
+
+entity Playlist{
+    title String,
+    description String,
+    State SongState,
+    playlistURL String,
+}
+
+
+enum SongState {
+    STARTED,
+    STOPPED,
+    NEXT_SONG,
+    PREVIOUS_SONG
+}
+
+
+enum TimerState {
+    STARTED,
+    PAUSED,
+    RESET,
+    COMPLETED
+}
+
+
+enum TimerType {
+    POMODORO_TIMER,
+    SHORT_BREAK_TIMER,
+    LONG_BREAK_TIMER
+}
+
+
+enum TaskStatus {
+    TODO,
+    IN_PROGRESS,
+    DONE,
+    UNDEFINED
+}
+
+
+enum MessageStatus {
+    SENT,
+    DELIVERED,
+    READ
+}
+
+
+enum AttachmentType {
+    IMAGE,
+    DOCUMENT,
+    AUDIO,
+    VIDEO
+}
+
+
+relationship OneToOne {
+    ApplicationUser{internalUser} to User
+    ApplicationUser{allTimeAnalytics} to AllTimeUserAnalytics{user}
+    ApplicationUser{currentMilestone} to Milestone
+    Session{sessionAnalytic} to SessionAnalytic{session}
+    Session{kanbanBoard} to KanbanBoard
+    Session{pomodoroTimer} to PomodoroTimer
+    Session{playlist} to Playlist
+    SessionAnalytic{user} to ApplicationUser
+    Message{attachment} to Attachment
+    KanbanTask{author} to ApplicationUser
+    KanbanTaskComment{author} to ApplicationUser
+    Praise{sender} to ApplicationUser
+    Praise{receiver} to ApplicationUser
+}
+
+relationship OneToMany {
+    ApplicationUser{messages} to Message
+    AllTimeUserAnalytics{sessionAnalytics} to SessionAnalytic
+    Milestone{rewards} to Reward
+    KanbanBoard{tasks} to KanbanTask
+    KanbanTask{assignees} to ApplicationUser
+    KanbanTask{comments} to KanbanTaskComment
+    Session{messages} to Message
+    Session{users} to ApplicationUser
+}
+
+relationship ManyToMany {
+    KanbanTask{labels} to KanbanLabel{tasks}
+    KanbanLabel{board} to KanbanBoard{label}
+}
+
+
