@@ -1,0 +1,38 @@
+{
+  "applications": "*",
+  "changelogDate": "20240309231746",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "kanban_board",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "KanbanBoard",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "kanbanTask",
+      "otherEntityRelationshipName": "kanbanBoard",
+      "relationshipName": "tasks",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "kanbanLabel",
+      "otherEntityRelationshipName": "board",
+      "ownerSide": false,
+      "relationshipName": "label",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "no"
+}

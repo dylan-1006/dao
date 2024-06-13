@@ -1,0 +1,143 @@
+<div>
+  <h2 id="page-heading" data-cy="KanbanTaskHeading">
+    <span>Kanban Tasks</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-kanban-task"
+        [routerLink]="['/kanban-task/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Kanban Task </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="kanbanTasks?.length === 0">
+    <span>No Kanban Tasks found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="kanbanTasks && kanbanTasks.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="title">
+            <div class="d-flex">
+              <span>Title</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="description">
+            <div class="d-flex">
+              <span>Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="taskStatus">
+            <div class="d-flex">
+              <span>Task Status</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dueDate">
+            <div class="d-flex">
+              <span>Due Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="author.id">
+            <div class="d-flex">
+              <span>Author</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="labels.id">
+            <div class="d-flex">
+              <span>Labels</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="kanbanBoard.id">
+            <div class="d-flex">
+              <span>Kanban Board</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let kanbanTask of kanbanTasks; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/kanban-task', kanbanTask.id, 'view']">{{ kanbanTask.id }}</a>
+          </td>
+          <td>{{ kanbanTask.title }}</td>
+          <td>{{ kanbanTask.description }}</td>
+          <td>{{ kanbanTask.taskStatus }}</td>
+          <td>{{ kanbanTask.dueDate | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="kanbanTask.author">
+              <a [routerLink]="['/application-user', kanbanTask.author.id, 'view']">{{ kanbanTask.author.id }}</a>
+            </div>
+          </td>
+          <td>
+            <span *ngFor="let labels of kanbanTask.labels; let last = last">
+              <a class="form-control-static" [routerLink]="['/kanban-label', labels.id, 'view']">{{ labels.id }}</a
+              >{{ last ? '' : ', ' }}
+            </span>
+          </td>
+          <td>
+            <div *ngIf="kanbanTask.kanbanBoard">
+              <a [routerLink]="['/kanban-board', kanbanTask.kanbanBoard.id, 'view']">{{ kanbanTask.kanbanBoard.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/kanban-task', kanbanTask.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/kanban-task', kanbanTask.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(kanbanTask)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

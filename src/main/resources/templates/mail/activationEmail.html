@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${#locale.language}" lang="en">
+  <head>
+    <title th:text="#{email.activation.title}">JHipster activation</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="icon" th:href="@{|${baseUrl}/favicon.ico|}" />
+  </head>
+  <body>
+    <p th:text="#{email.activation.greeting(${user.login})}">Hey There</p>
+    <p th:text="#{email.activation.text1}">
+      You are on the path to defeating procrastination. Click the link to activate your account and let Dao into your life.
+    </p>
+    <p>
+      <a th:with="url=(@{|${baseUrl}/account/activate?key=${user.activationKey}|})" th:href="${url}" th:text="${url}">Activation link</a>
+    </p>
+    <p>
+      <span th:text="#{email.activation.text2}">Cheers, </span>
+      <br />
+      <em>Confucius</em>
+    </p>
+  </body>
+</html>

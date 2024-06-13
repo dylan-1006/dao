@@ -1,0 +1,59 @@
+@import '../../../content/scss/global';
+
+.analytics-container {
+  height: 98%;
+  width: 28vw;
+  background-color: color-mix(in srgb, var(--color-bg) 80%, transparent);
+  border-radius: 20px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.task-area,
+.online-member-area,
+.message-area {
+  width: 100%;
+  background-color: var(--color-bg);
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.area-title {
+  font-weight: bold;
+}
+
+.tab-main {
+  height: 100%;
+}
+
+.analytics-main i,
+h3,
+h4,
+div {
+  color: var(--color-text);
+}
+
+.analytics-container i,
+h3,
+h4,
+div {
+  color: var(--color-text);
+}
+
+.fixed {
+  position: absolute;
+  width: 5%;
+  top: 40px;
+  right: 40px;
+}
+
+.ellipsis-button {
+  align-self: flex-end;
+  background-color: transparent;
+  border: none;
+  color: rgba($primary-color-dark-blue, 1);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0;
+}

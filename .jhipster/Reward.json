@@ -1,0 +1,35 @@
+{
+  "applications": "*",
+  "changelogDate": "20240309231751",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "reward",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "rewardUrl",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Reward",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "milestone",
+      "otherEntityRelationshipName": "rewards",
+      "relationshipName": "milestone",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

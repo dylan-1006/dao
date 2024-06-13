@@ -1,0 +1,131 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-session-analytic-heading" data-cy="SessionAnalyticCreateUpdateHeading">Create or edit a Session Analytic</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_sessionDuration">Session Duration</label>
+          <input
+            type="number"
+            class="form-control"
+            name="sessionDuration"
+            id="field_sessionDuration"
+            data-cy="sessionDuration"
+            formControlName="sessionDuration"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_taskTotal">Task Total</label>
+          <input type="number" class="form-control" name="taskTotal" id="field_taskTotal" data-cy="taskTotal" formControlName="taskTotal" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_taskCompleted">Task Completed</label>
+          <input
+            type="number"
+            class="form-control"
+            name="taskCompleted"
+            id="field_taskCompleted"
+            data-cy="taskCompleted"
+            formControlName="taskCompleted"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_pointsGained">Points Gained</label>
+          <input
+            type="number"
+            class="form-control"
+            name="pointsGained"
+            id="field_pointsGained"
+            data-cy="pointsGained"
+            formControlName="pointsGained"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_numOfPomodoroFinished">Num Of Pomodoro Finished</label>
+          <input
+            type="number"
+            class="form-control"
+            name="numOfPomodoroFinished"
+            id="field_numOfPomodoroFinished"
+            data-cy="numOfPomodoroFinished"
+            formControlName="numOfPomodoroFinished"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_praiseCount">Praise Count</label>
+          <input
+            type="number"
+            class="form-control"
+            name="praiseCount"
+            id="field_praiseCount"
+            data-cy="praiseCount"
+            formControlName="praiseCount"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_user">User</label>
+          <select
+            class="form-control"
+            id="field_user"
+            data-cy="user"
+            name="user"
+            formControlName="user"
+            [compareWith]="compareApplicationUser"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="applicationUserOption" *ngFor="let applicationUserOption of applicationUsersSharedCollection">
+              {{ applicationUserOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_allTimeUserAnalytics">All Time User Analytics</label>
+          <select
+            class="form-control"
+            id="field_allTimeUserAnalytics"
+            data-cy="allTimeUserAnalytics"
+            name="allTimeUserAnalytics"
+            formControlName="allTimeUserAnalytics"
+            [compareWith]="compareAllTimeUserAnalytics"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="allTimeUserAnalyticsOption" *ngFor="let allTimeUserAnalyticsOption of allTimeUserAnalyticsSharedCollection">
+              {{ allTimeUserAnalyticsOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

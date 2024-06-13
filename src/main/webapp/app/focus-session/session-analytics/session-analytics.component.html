@@ -1,0 +1,64 @@
+<head xmlns="http://www.w3.org/1999/html">
+  <meta http-equiv="Content-Security-Policy" content="style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com;" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+</head>
+<div class="analytics-container">
+  <div class="analytics-header d-flex align-items-center mb-3">
+    <i class="material-icons mr-4">analytics</i>
+    <h3 class="mx-4 fw-bold">Analytics</h3>
+    <div class="refresh-container mx-4">
+      <button class="ellipsis-button" (click)="fetchMainAnalytics()">
+        <i class="fa fa-refresh" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div>
+    <div>
+      <mat-tab-group dynamicHeight mat-stretch-tabs="true" class="tab-main">
+        <mat-tab class="tab-main" label="Session" (click)="fetchMainAnalytics()">
+          <div class="px-4 py-2 my-4">
+            <h4 class="fw-bold">Session Title: {{ currentSession?.title }}</h4>
+            <h4 class="fw-bold">Session Join Code: {{ currentSession?.joinCode }}</h4>
+            <h4 class="fw-bold">Online User(s): {{ loggedInUserNames.length }}</h4>
+            <div class="area-title mt-5">
+              <h4>Current Session Users:</h4>
+            </div>
+            <div class="online-member-area mt-3">
+              <ol>
+                <li *ngFor="let names of loggedInUserNames">
+                  <h5>{{ names }}</h5>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab class="tab-main" label="Insights" (click)="fetchMainAnalytics()">
+          <div class="analytics-main px-4 py-2 my-4">
+            <div class="area-title">
+              <h4>Tasks Insight:</h4>
+            </div>
+            <div class="task-area mt-3">
+              <h5>Total number of tasks: {{ kanbanTask.length }}</h5>
+              <h5>Tasks to do: {{ toDoTasks.length }}</h5>
+              <h5>Tasks in progress: {{ inProgressTasks.length }}</h5>
+              <h5>Total number of completed tasks: {{ doneTasks.length }}</h5>
+            </div>
+            <div class="area-title mt-5">
+              <h4>Messages Insight:</h4>
+            </div>
+            <div class="message-area mt-3">
+              <h5>Total number of pinned messages: {{ pinnedMessages.length }}</h5>
+              <h5>Total number of messages: {{ messages.length }}</h5>
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>

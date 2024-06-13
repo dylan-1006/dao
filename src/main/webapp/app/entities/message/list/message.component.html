@@ -1,0 +1,149 @@
+<div>
+  <h2 id="page-heading" data-cy="MessageHeading">
+    <span>Messages</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-message"
+        [routerLink]="['/message/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Message </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="messages?.length === 0">
+    <span>No Messages found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="messages && messages.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="content">
+            <div class="d-flex">
+              <span>Content</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="sentTime">
+            <div class="d-flex">
+              <span>Sent Time</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="status">
+            <div class="d-flex">
+              <span>Status</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="hasAttachment">
+            <div class="d-flex">
+              <span>Has Attachment</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="isPinned">
+            <div class="d-flex">
+              <span>Is Pinned</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="attachment.id">
+            <div class="d-flex">
+              <span>Attachment</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="applicationUser.id">
+            <div class="d-flex">
+              <span>Application User</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="session.id">
+            <div class="d-flex">
+              <span>Session</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let message of messages; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/message', message.id, 'view']">{{ message.id }}</a>
+          </td>
+          <td>{{ message.content }}</td>
+          <td>{{ message.sentTime | formatMediumDatetime }}</td>
+          <td>{{ message.status }}</td>
+          <td>{{ message.hasAttachment }}</td>
+          <td>{{ message.isPinned }}</td>
+          <td>
+            <div *ngIf="message.attachment">
+              <a [routerLink]="['/attachment', message.attachment.id, 'view']">{{ message.attachment.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="message.applicationUser">
+              <a [routerLink]="['/application-user', message.applicationUser.id, 'view']">{{ message.applicationUser.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="message.session">
+              <a [routerLink]="['/session', message.session.id, 'view']">{{ message.session.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/message', message.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/message', message.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(message)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

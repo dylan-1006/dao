@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="pomodoroTimer">
+      <h2 data-cy="pomodoroTimerDetailsHeading"><span>Pomodoro Timer</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ pomodoroTimer.id }}</span>
+        </dd>
+        <dt><span>Start Time</span></dt>
+        <dd>
+          <span>{{ pomodoroTimer.startTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>End Time</span></dt>
+        <dd>
+          <span>{{ pomodoroTimer.endTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>State</span></dt>
+        <dd>
+          <span>{{ pomodoroTimer.state }}</span>
+        </dd>
+        <dt><span>Type</span></dt>
+        <dd>
+          <span>{{ pomodoroTimer.type }}</span>
+        </dd>
+        <dt><span>Duration</span></dt>
+        <dd>
+          <span>{{ pomodoroTimer.duration | duration }} ({{ pomodoroTimer.duration }})</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/pomodoro-timer', pomodoroTimer.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

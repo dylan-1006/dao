@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity Session.
+    -->
+    <changeSet id="20240310112738-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="session_analytic_id"
+                                 baseTableName="session"
+                                 constraintName="fk_session__session_analytic_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="session_analytic"/>
+
+        <addForeignKeyConstraint baseColumnNames="kanban_board_id"
+                                 baseTableName="session"
+                                 constraintName="fk_session__kanban_board_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="kanban_board"/>
+
+        <addForeignKeyConstraint baseColumnNames="pomodoro_timer_id"
+                                 baseTableName="session"
+                                 constraintName="fk_session__pomodoro_timer_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pomodoro_timer"/>
+
+        <addForeignKeyConstraint baseColumnNames="playlist_id"
+                                 baseTableName="session"
+                                 constraintName="fk_session__playlist_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="playlist"/>
+    </changeSet>
+</databaseChangeLog>

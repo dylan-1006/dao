@@ -1,0 +1,66 @@
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+button {
+  color: var(--color-text);
+}
+
+.title-input {
+  width: 100%;
+  height: 60px;
+  border-radius: 1rem;
+  border: none;
+  outline: none;
+  font-size: 1.2rem;
+}
+
+.code-area {
+  background-color: var(--color-bg);
+  border-radius: 1rem;
+  height: 60px;
+  width: 100%;
+}
+
+.code-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.code-label {
+  margin-right: 1rem;
+}
+
+.buttons-container {
+  display: flex;
+}
+
+.close,
+.close-button {
+  border: none;
+  background: none;
+}
+
+.join-code-copy,
+.copy-icon {
+  color: var(--color-text);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.copy-icon {
+  margin-left: 1rem;
+}
+
+.copy-icon .mat-icon {
+  font-size: 20px;
+}
+
+.new-session-button {
+  background-color: var(--color-action-button);
+  color: white;
+}

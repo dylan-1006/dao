@@ -1,0 +1,72 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="allTimeUserAnalytics">
+      <h2 data-cy="allTimeUserAnalyticsDetailsHeading"><span>All Time User Analytics</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ allTimeUserAnalytics.id }}</span>
+        </dd>
+        <dt><span>Total Study Time</span></dt>
+        <dd>
+          <span>{{ allTimeUserAnalytics.totalStudyTime }}</span>
+        </dd>
+        <dt><span>Total Pomodoro Session</span></dt>
+        <dd>
+          <span>{{ allTimeUserAnalytics.totalPomodoroSession }}</span>
+        </dd>
+        <dt><span>Daily Streaks</span></dt>
+        <dd>
+          <span>{{ allTimeUserAnalytics.dailyStreaks }}</span>
+        </dd>
+        <dt><span>Most Focused Period</span></dt>
+        <dd>
+          <span>{{ allTimeUserAnalytics.mostFocusedPeriod | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Task Completion Rate</span></dt>
+        <dd>
+          <span>{{ allTimeUserAnalytics.taskCompletionRate }}</span>
+        </dd>
+        <dt><span>Average Focus Duration</span></dt>
+        <dd>
+          <span>{{ allTimeUserAnalytics.averageFocusDuration }}</span>
+        </dd>
+        <dt><span>Focus Count</span></dt>
+        <dd>
+          <span>{{ allTimeUserAnalytics.focusCount }}</span>
+        </dd>
+        <dt><span>Total Focus Duration</span></dt>
+        <dd>
+          <span>{{ allTimeUserAnalytics.totalFocusDuration }}</span>
+        </dd>
+        <dt><span>Session Record</span></dt>
+        <dd>
+          <span>{{ allTimeUserAnalytics.sessionRecord }}</span>
+        </dd>
+        <dt><span>Total Break Time</span></dt>
+        <dd>
+          <span>{{ allTimeUserAnalytics.totalBreakTime }}</span>
+        </dd>
+        <dt><span>Average Break Duration</span></dt>
+        <dd>
+          <span>{{ allTimeUserAnalytics.averageBreakDuration }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/all-time-user-analytics', allTimeUserAnalytics.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<h2 mat-dialog-title class="dialog-title">New Label</h2>
+<mat-dialog-content>
+  <div class="first-row">
+    <div class="input-field label-name">
+      <label for="label-name">Name</label>
+      <input type="text" id="label-Name" placeholder="Enter label name" class="form-control" [(ngModel)]="labelName" />
+    </div>
+    <div class="input-field label">
+      <label>Label</label>
+
+      <div class="colour-picker">
+        <input
+          type="text"
+          style="text-transform: uppercase"
+          name="labelColour"
+          class="form-control"
+          placeholder="Select a colour"
+          [ngxMatColorPicker]="picker"
+          [(ngModel)]="labelColour"
+          readonly
+        />
+        <ngx-mat-color-toggle matPrefix [for]="picker"></ngx-mat-color-toggle>
+        <ngx-mat-color-picker #picker></ngx-mat-color-picker>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions class="actions">
+  <button mat-button class="create-button" mat-dialog-close (click)="createNewLabel()">Create label</button>
+  <button mat-button class="cancel-button" mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

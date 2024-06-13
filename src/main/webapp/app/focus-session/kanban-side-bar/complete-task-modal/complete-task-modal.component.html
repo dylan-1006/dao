@@ -1,0 +1,6 @@
+<h2 mat-dialog-title class="delete-title">Mark Task as Completed</h2>
+<mat-dialog-content class="delete-content"> Mark this task as completed? You can undo this in the expanded task view. </mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button class="confirm-button" [mat-dialog-close]="true" (click)="onCompleteTaskClicked()">Confirm</button>
+  <button mat-button class="cancel-button" mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

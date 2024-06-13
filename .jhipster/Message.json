@@ -1,0 +1,56 @@
+{
+  "applications": "*",
+  "changelogDate": "20240309231743",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "message",
+  "fields": [
+    {
+      "fieldName": "content",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sentTime",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "MessageStatus",
+      "fieldValues": "SENT,DELIVERED,READ"
+    },
+    {
+      "fieldName": "hasAttachment",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "isPinned",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Message",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "attachment",
+      "ownerSide": true,
+      "relationshipName": "attachment",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "applicationUser",
+      "otherEntityRelationshipName": "messages",
+      "relationshipName": "applicationUser",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "session",
+      "otherEntityRelationshipName": "messages",
+      "relationshipName": "session",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

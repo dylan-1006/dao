@@ -1,0 +1,21 @@
+.delete-title {
+  font-weight: bold;
+  margin-top: 0;
+  font-size: 1.2rem;
+}
+.delete-content {
+  font-size: 1rem;
+}
+
+.confirm-button {
+  background-color: green;
+  color: white;
+}
+
+.confirm-button:hover {
+  background-color: rgba(green, 0.9);
+}
+
+.cancel-button {
+  color: green;
+}

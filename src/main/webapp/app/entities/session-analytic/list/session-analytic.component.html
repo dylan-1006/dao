@@ -1,0 +1,147 @@
+<div>
+  <h2 id="page-heading" data-cy="SessionAnalyticHeading">
+    <span>Session Analytics</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-session-analytic"
+        [routerLink]="['/session-analytic/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Session Analytic </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="sessionAnalytics?.length === 0">
+    <span>No Session Analytics found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="sessionAnalytics && sessionAnalytics.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="sessionDuration">
+            <div class="d-flex">
+              <span>Session Duration</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="taskTotal">
+            <div class="d-flex">
+              <span>Task Total</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="taskCompleted">
+            <div class="d-flex">
+              <span>Task Completed</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="pointsGained">
+            <div class="d-flex">
+              <span>Points Gained</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="numOfPomodoroFinished">
+            <div class="d-flex">
+              <span>Num Of Pomodoro Finished</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="praiseCount">
+            <div class="d-flex">
+              <span>Praise Count</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="user.id">
+            <div class="d-flex">
+              <span>User</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="allTimeUserAnalytics.id">
+            <div class="d-flex">
+              <span>All Time User Analytics</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let sessionAnalytic of sessionAnalytics; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/session-analytic', sessionAnalytic.id, 'view']">{{ sessionAnalytic.id }}</a>
+          </td>
+          <td>{{ sessionAnalytic.sessionDuration }}</td>
+          <td>{{ sessionAnalytic.taskTotal }}</td>
+          <td>{{ sessionAnalytic.taskCompleted }}</td>
+          <td>{{ sessionAnalytic.pointsGained }}</td>
+          <td>{{ sessionAnalytic.numOfPomodoroFinished }}</td>
+          <td>{{ sessionAnalytic.praiseCount }}</td>
+          <td>
+            <div *ngIf="sessionAnalytic.user">
+              <a [routerLink]="['/application-user', sessionAnalytic.user.id, 'view']">{{ sessionAnalytic.user.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="sessionAnalytic.allTimeUserAnalytics">
+              <a [routerLink]="['/all-time-user-analytics', sessionAnalytic.allTimeUserAnalytics.id, 'view']">{{
+                sessionAnalytic.allTimeUserAnalytics.id
+              }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/session-analytic', sessionAnalytic.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/session-analytic', sessionAnalytic.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(sessionAnalytic)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

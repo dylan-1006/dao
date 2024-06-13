@@ -1,0 +1,119 @@
+@import 'content/scss/global';
+
+.expanded-kanban {
+  padding: 12px 0px 30px 12px;
+  height: 100%;
+}
+
+.ellipsis-button-expanded {
+  background-color: transparent;
+  border: none;
+  color: rgba($primary-color-dark-blue, 1);
+  font-size: 1.4vmax;
+  cursor: pointer;
+  padding: 0;
+}
+
+.close-button {
+  font-size: 2vmax;
+  height: 100%;
+  width: 100%;
+  padding-left: 0.2vmax;
+}
+
+.expanded-kanban-tasks-container {
+  height: 95%;
+  padding-top: 1vmax;
+  padding-right: 0.5vmax;
+  display: flex;
+  justify-content: space-between;
+}
+
+.expanded-kanban-task-category {
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  width: 17vmax;
+  font-size: 1vmax;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.no-task-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.expanded-no-tasks-message {
+  color: var(--color-text);
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  font-weight: lighter;
+  font-size: 1.2vmax;
+  text-align: center;
+}
+
+.expanded-kanban-col {
+  width: 87%;
+  height: 6.5rem;
+  justify-content: space-between;
+}
+
+.expanded-kanban-col-container {
+  padding-top: 10px;
+}
+
+.expanded-add-task-button {
+  padding: 0.5rem 1.2rem;
+  background-color: var(--color-action-button);
+  border-radius: 20px;
+  border: none;
+  color: white;
+  font-size: 0.8rem;
+  cursor: pointer;
+  text-align: center;
+  margin-left: 20px;
+}
+
+.expanded-kanban-board-title {
+  max-width: 1090px;
+  font-weight: bold;
+  color: var(--color-text);
+  font-family: 'Futura', Arial, sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 1.6vmax;
+  text-overflow: ellipsis;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 10px;
+}
+
+.expanded-kanban-board-title:hover {
+  background-color: var(--color-div-hover);
+  border-radius: 12px;
+}
+
+.expanded-kanban-title-input {
+  border-radius: 12px;
+  outline: 0.5px solid blue;
+  background-color: white;
+  color: black;
+  font-size: 1.6vmax;
+  font-weight: bold;
+  font-family: 'Futura', Arial, sans-serif;
+  position: absolute;
+  width: inherit;
+  overflow: auto;
+  text-overflow: ellipsis;
+  transition: width 0.4s ease-in-out;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 10px;
+}
+
+.expanded-kanban-title-input:focus {
+  width: auto;
+}

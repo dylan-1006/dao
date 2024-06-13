@@ -1,0 +1,9 @@
+export enum SongState {
+  STARTED = 'STARTED',
+
+  STOPPED = 'STOPPED',
+
+  NEXT_SONG = 'NEXT_SONG',
+
+  PREVIOUS_SONG = 'PREVIOUS_SONG',
+}

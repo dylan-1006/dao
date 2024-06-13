@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity AllTimeUserAnalytics.
+    -->
+    <changeSet id="20240309231740-1" author="jhipster">
+        <createTable tableName="all_time_user_analytics">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="total_study_time" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="total_pomodoro_session" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="daily_streaks" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="most_focused_period" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="task_completion_rate" type="${floatType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="average_focus_duration" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="focus_count" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="total_focus_duration" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="session_record" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="total_break_time" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="average_break_duration" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+        <dropDefaultValue tableName="all_time_user_analytics" columnName="most_focused_period" columnDataType="${datetimeType}"/>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20240309231740-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/all_time_user_analytics.csv"
+                  separator=";"
+                  tableName="all_time_user_analytics"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="total_study_time" type="numeric"/>
+            <column name="total_pomodoro_session" type="numeric"/>
+            <column name="daily_streaks" type="numeric"/>
+            <column name="most_focused_period" type="date"/>
+            <column name="task_completion_rate" type="numeric"/>
+            <column name="average_focus_duration" type="numeric"/>
+            <column name="focus_count" type="numeric"/>
+            <column name="total_focus_duration" type="numeric"/>
+            <column name="session_record" type="numeric"/>
+            <column name="total_break_time" type="numeric"/>
+            <column name="average_break_duration" type="numeric"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

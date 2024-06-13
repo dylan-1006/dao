@@ -1,0 +1,153 @@
+@import 'content/scss/global';
+
+/* ==========================================================================
+Navbar
+========================================================================== */
+
+.navbar-version {
+  font-size: 0.65em;
+  color: var(--color-text);
+}
+
+.profile-image {
+  height: 1.75em;
+  width: 1.75em;
+}
+
+.navbar {
+  background: color-mix(in srgb, var(--color-bg) 80%, transparent);
+  padding: 0.2rem 4rem;
+  .dropdown-item.active,
+  .dropdown-item.active:focus,
+  .dropdown-item.active:hover {
+    background-color: $dark;
+  }
+
+  a.nav-link {
+    font-weight: 400;
+    color: var(--color-text);
+  }
+
+  .navbar-toggler {
+    &:hover {
+      color: $navbar-dark-hover-color;
+    }
+  }
+
+  .navbar-title {
+    color: var(--color-text);
+  }
+}
+
+/* ==========================================================================
+Dark mode switch styles
+========================================================================== */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px; /* Changed width */
+  height: 34px; /* Changed height */
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Center vertically */
+  left: 0;
+  right: 0;
+  height: 24px; /* Adjusted height */
+  background-color: var(--color-bg); /* Dark blue/purple color */
+  transition: background-color 0.4s; /* Simplified transition */
+  border-radius: 12px; /* Rounded corners */
+}
+
+.slider:before {
+  content: '';
+  position: absolute;
+  height: 20px; /* Reduced height */
+  width: 20px; /* Reduced width */
+  left: 2px; /* Adjusted position */
+  bottom: 2px; /* Adjusted position */
+  background-color: white;
+  transition: transform 0.4s; /* Simplified transition */
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #f98086; /* Darker color when checked */
+}
+
+input:checked + .slider:before {
+  transform: translateX(36px); /* Adjusted translation */
+}
+
+/* Icon styles */
+.slider i {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px; /* Adjust icon size */
+  color: #fff; /* Icon color */
+  transition: opacity 0.4s; /* Smooth transition */
+}
+
+.slider i.fa-sun {
+  left: 8px; /* Adjust sun icon position */
+}
+
+.slider i.fa-moon {
+  right: 8px; /* Adjust moon icon position */
+}
+
+input:checked + .slider i.fa-sun {
+  opacity: 1; /* Hide sun icon when checked */
+}
+
+input:checked + .slider i.fa-moon {
+  opacity: 1; /* Show moon icon when checked */
+}
+
+/* ==========================================================================
+Logo styles
+========================================================================== */
+.logo-img {
+  height: 45px;
+  width: 45px;
+  display: inline-block;
+  vertical-align: middle;
+  background: url('../../../dao-logo.png') no-repeat center center;
+  background-size: contain;
+}
+
+/* ==========================================================================
+Accessibility styles
+========================================================================== */
+
+.accessibility-option {
+  color: var(--bs-dropdown-link-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.accessibility-option i.change-font-size-icon {
+  color: var(--bs-dropdown-link-color);
+}
+
+.font-size-button {
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
+}
+
+.font-size-button:focus {
+  outline: none;
+}

@@ -1,0 +1,29 @@
+{
+  "applications": "*",
+  "changelogDate": "20240309231744",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "attachment",
+  "fields": [
+    {
+      "fieldName": "filename",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "fileUrl",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "AttachmentType",
+      "fieldValues": "IMAGE,DOCUMENT,AUDIO,VIDEO"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Attachment",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "no"
+}

@@ -1,0 +1,53 @@
+{
+  "applications": "*",
+  "changelogDate": "20240309231739",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "application_user",
+  "fields": [],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "ApplicationUser",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "user",
+      "ownerSide": true,
+      "relationshipName": "internalUser",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "allTimeUserAnalytics",
+      "otherEntityRelationshipName": "user",
+      "ownerSide": true,
+      "relationshipName": "allTimeAnalytics",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "milestone",
+      "ownerSide": true,
+      "relationshipName": "currentMilestone",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "message",
+      "otherEntityRelationshipName": "applicationUser",
+      "relationshipName": "messages",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "kanbanTask",
+      "otherEntityRelationshipName": "assignees",
+      "relationshipName": "kanbanTask",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "session",
+      "otherEntityRelationshipName": "users",
+      "relationshipName": "session",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

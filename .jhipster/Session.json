@@ -1,0 +1,74 @@
+{
+  "applications": "*",
+  "changelogDate": "20240309231742",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "session",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "joinCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "userIdList",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "startTime",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "endTime",
+      "fieldType": "Instant"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Session",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "sessionAnalytic",
+      "otherEntityRelationshipName": "session",
+      "ownerSide": true,
+      "relationshipName": "sessionAnalytic",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "kanbanBoard",
+      "ownerSide": true,
+      "relationshipName": "kanbanBoard",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "pomodoroTimer",
+      "ownerSide": true,
+      "relationshipName": "pomodoroTimer",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "playlist",
+      "ownerSide": true,
+      "relationshipName": "playlist",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "message",
+      "otherEntityRelationshipName": "session",
+      "relationshipName": "messages",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "applicationUser",
+      "otherEntityRelationshipName": "session",
+      "relationshipName": "users",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}

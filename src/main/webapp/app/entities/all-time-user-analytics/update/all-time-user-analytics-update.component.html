@@ -1,0 +1,169 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-all-time-user-analytics-heading" data-cy="AllTimeUserAnalyticsCreateUpdateHeading">
+        Create or edit a All Time User Analytics
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_totalStudyTime">Total Study Time</label>
+          <input
+            type="number"
+            class="form-control"
+            name="totalStudyTime"
+            id="field_totalStudyTime"
+            data-cy="totalStudyTime"
+            formControlName="totalStudyTime"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_totalPomodoroSession">Total Pomodoro Session</label>
+          <input
+            type="number"
+            class="form-control"
+            name="totalPomodoroSession"
+            id="field_totalPomodoroSession"
+            data-cy="totalPomodoroSession"
+            formControlName="totalPomodoroSession"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_dailyStreaks">Daily Streaks</label>
+          <input
+            type="number"
+            class="form-control"
+            name="dailyStreaks"
+            id="field_dailyStreaks"
+            data-cy="dailyStreaks"
+            formControlName="dailyStreaks"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_mostFocusedPeriod">Most Focused Period</label>
+          <div class="d-flex">
+            <input
+              id="field_mostFocusedPeriod"
+              data-cy="mostFocusedPeriod"
+              type="datetime-local"
+              class="form-control"
+              name="mostFocusedPeriod"
+              formControlName="mostFocusedPeriod"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_taskCompletionRate">Task Completion Rate</label>
+          <input
+            type="number"
+            class="form-control"
+            name="taskCompletionRate"
+            id="field_taskCompletionRate"
+            data-cy="taskCompletionRate"
+            formControlName="taskCompletionRate"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_averageFocusDuration">Average Focus Duration</label>
+          <input
+            type="number"
+            class="form-control"
+            name="averageFocusDuration"
+            id="field_averageFocusDuration"
+            data-cy="averageFocusDuration"
+            formControlName="averageFocusDuration"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_focusCount">Focus Count</label>
+          <input
+            type="number"
+            class="form-control"
+            name="focusCount"
+            id="field_focusCount"
+            data-cy="focusCount"
+            formControlName="focusCount"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_totalFocusDuration">Total Focus Duration</label>
+          <input
+            type="number"
+            class="form-control"
+            name="totalFocusDuration"
+            id="field_totalFocusDuration"
+            data-cy="totalFocusDuration"
+            formControlName="totalFocusDuration"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_sessionRecord">Session Record</label>
+          <input
+            type="number"
+            class="form-control"
+            name="sessionRecord"
+            id="field_sessionRecord"
+            data-cy="sessionRecord"
+            formControlName="sessionRecord"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_totalBreakTime">Total Break Time</label>
+          <input
+            type="number"
+            class="form-control"
+            name="totalBreakTime"
+            id="field_totalBreakTime"
+            data-cy="totalBreakTime"
+            formControlName="totalBreakTime"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_averageBreakDuration">Average Break Duration</label>
+          <input
+            type="number"
+            class="form-control"
+            name="averageBreakDuration"
+            id="field_averageBreakDuration"
+            data-cy="averageBreakDuration"
+            formControlName="averageBreakDuration"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+{
+  "applications": "*",
+  "changelogDate": "20240309231741",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "session_analytic",
+  "fields": [
+    {
+      "fieldName": "sessionDuration",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "taskTotal",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "taskCompleted",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "pointsGained",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "numOfPomodoroFinished",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "praiseCount",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "SessionAnalytic",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "applicationUser",
+      "ownerSide": true,
+      "relationshipName": "user",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "session",
+      "otherEntityRelationshipName": "sessionAnalytic",
+      "ownerSide": false,
+      "relationshipName": "session",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "allTimeUserAnalytics",
+      "otherEntityRelationshipName": "sessionAnalytics",
+      "relationshipName": "allTimeUserAnalytics",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

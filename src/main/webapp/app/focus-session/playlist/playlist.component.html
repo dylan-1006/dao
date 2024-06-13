@@ -1,0 +1,43 @@
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spotify Playlist</title>
+  <link rel="stylesheet" href="playlist.component.scss" />
+</head>
+
+<div class="playlist-container">
+  <div class="playlist-header">
+    <div class="chat-header d-flex align-items-center mb-1">
+      <i class="material-icons my-auto">library_music</i>
+      <h3 class="mx-4">Playlist</h3>
+      <div class="refresh-container mx-4">
+        <button class="ellipsis-button" (click)="fetchPlaylist()">
+          <i class="fa fa-refresh" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+
+    <p class="playlist_desc mb-2">
+      Listen to your favorite playlist from Spotify!<br />Note: If you only see the preview, please log in to your Spotify web account.
+    </p>
+    <div class="input-group mb-3">
+      <input type="text" [(ngModel)]="playlistLink" placeholder="Enter Spotify playlist share link here.." />
+      <button class="enter_btn" (click)="changePlaylist()">Enter</button>
+    </div>
+  </div>
+
+  <div class="playlist-frame">
+    <iframe
+      style="border-radius: 12px"
+      [src]="playlistSrc"
+      width="100%"
+      height="400"
+      frameborder="0"
+      allowfullscreen=""
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      loading="lazy"
+    ></iframe>
+  </div>
+</div>
+
+<script src="playlist.component.ts"></script>

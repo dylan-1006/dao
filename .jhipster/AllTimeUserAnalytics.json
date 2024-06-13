@@ -1,0 +1,74 @@
+{
+  "applications": "*",
+  "changelogDate": "20240309231740",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "all_time_user_analytics",
+  "fields": [
+    {
+      "fieldName": "totalStudyTime",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "totalPomodoroSession",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "dailyStreaks",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "mostFocusedPeriod",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "taskCompletionRate",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "averageFocusDuration",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "focusCount",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "totalFocusDuration",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "sessionRecord",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "totalBreakTime",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "averageBreakDuration",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "AllTimeUserAnalytics",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "sessionAnalytic",
+      "otherEntityRelationshipName": "allTimeUserAnalytics",
+      "relationshipName": "sessionAnalytics",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "applicationUser",
+      "otherEntityRelationshipName": "allTimeAnalytics",
+      "ownerSide": false,
+      "relationshipName": "user",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "no"
+}

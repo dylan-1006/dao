@@ -1,0 +1,33 @@
+{
+  "applications": "*",
+  "changelogDate": "20240309231753",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "playlist",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "state",
+      "fieldType": "SongState",
+      "fieldValues": "STARTED,STOPPED,NEXT_SONG,PREVIOUS_SONG"
+    },
+    {
+      "fieldName": "playlistURL",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Playlist",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "no"
+}

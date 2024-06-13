@@ -1,0 +1,56 @@
+<div class="card" *ngIf="isLoading; else content">
+  <div class="loading-screen">
+    <div class="spinner"></div>
+    <p>Loading...</p>
+  </div>
+</div>
+
+<ng-template #content>
+  <div class="card">
+    <img
+      src="../../../content/images/background-images/focus-session-bicycle-background.jpeg"
+      class="card-img"
+      alt="Person riding a bike with colorful blue-pink skyline"
+    />
+    <div class="card-img-overlay">
+      <div class="container-fluid pt-2 pb-4">
+        <div class="item session-title">
+          <jhi-top-session-detail [currentSession]="currentSession"></jhi-top-session-detail>
+        </div>
+        <div class="item clock">
+          <jhi-clock></jhi-clock>
+        </div>
+        <div class="item timer" id="timer">
+          <jhi-timer></jhi-timer>
+        </div>
+        <div class="item online-members">
+          <div class="col-auto">
+            <button class="btn end-session-button mb-2" (click)="endSession()">End Session</button>
+            <jhi-online-member-area [currentSession]="currentSession"></jhi-online-member-area>
+          </div>
+        </div>
+        <div class="item main-tool-bar mb-2">
+          <jhi-main-tool-bar
+            (onTasksButtonClicked)="displayKanBanSideBar($event)"
+            (onChatButtonClicked)="displayChatSideBar($event)"
+            (onPlaylistButtonClicked)="displayPlaylist($event)"
+            (onTimerButtonClicked)="displayTimer($event)"
+            (onAnalyticsButtonClicked)="displayAnalytics($event)"
+          ></jhi-main-tool-bar>
+        </div>
+        <div class="item kanban-side-bar" id="kanban-side-bar">
+          <jhi-kanban-side-bar [currentSession]="currentSession"></jhi-kanban-side-bar>
+        </div>
+        <div class="item chat-side-bar" id="chat-side-bar">
+          <jhi-chat [currentSession]="currentSession"></jhi-chat>
+        </div>
+        <div class="item playlist" id="playlist">
+          <jhi-playlist [currentSession]="currentSession"></jhi-playlist>
+        </div>
+        <div class="item analytics" id="analytics">
+          <jhi-analytics [currentSession]="currentSession"></jhi-analytics>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

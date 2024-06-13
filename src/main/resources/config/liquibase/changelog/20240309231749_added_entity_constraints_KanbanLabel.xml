@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity KanbanLabel.
+    -->
+    <changeSet id="20240309231749-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="kanban_label_id"
+                                 baseTableName="rel_kanban_label__board"
+                                 constraintName="fk_rel_kanban_label__board__kanban_label_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="kanban_label"/>
+
+        <addForeignKeyConstraint baseColumnNames="board_id"
+                                 baseTableName="rel_kanban_label__board"
+                                 constraintName="fk_rel_kanban_label__board__board_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="kanban_board"/>
+    </changeSet>
+</databaseChangeLog>

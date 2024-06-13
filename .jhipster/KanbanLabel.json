@@ -1,0 +1,41 @@
+{
+  "applications": "*",
+  "changelogDate": "20240309231749",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "kanban_label",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "colour",
+      "fieldType": "String",
+      "fieldValidateRules": ["pattern"],
+      "fieldValidateRulesPattern": "#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "KanbanLabel",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "kanbanBoard",
+      "otherEntityRelationshipName": "label",
+      "ownerSide": true,
+      "relationshipName": "board",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "kanbanTask",
+      "otherEntityRelationshipName": "labels",
+      "ownerSide": false,
+      "relationshipName": "tasks",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "no"
+}

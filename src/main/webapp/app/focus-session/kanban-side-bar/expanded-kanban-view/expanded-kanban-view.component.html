@@ -1,0 +1,241 @@
+<head>
+  <meta http-equiv="Content-Security-Policy" content="style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com;" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+</head>
+
+<div class="expanded-kanban">
+  <div class="kanban-header">
+    <div class="kanban-header-left">
+      <div class="kanban-icon"><i class="fa-solid fa-chalkboard"></i></div>
+      <div *ngIf="!isEditing" (click)="enterEditMode()" class="expanded-kanban-board-title">{{ this.kanbanBoard.title }}</div>
+      <div *ngIf="isEditing">
+        <input
+          #kanbanTitleInput
+          autofocus
+          type="text"
+          [(ngModel)]="editedTitle"
+          placeholder="{{ this.kanbanBoard.title }}"
+          class="expanded-kanban-title-input"
+          (blur)="exitEditMode()"
+        />
+      </div>
+      <div class="add-task-button-container">
+        <button type="button" (click)="openAddTaskModal()" class="expanded-add-task-button">+&nbsp;&nbsp;&nbsp;Add Task</button>
+      </div>
+    </div>
+
+    <div class="kanban-header-right">
+      <div class="refresh-container">
+        <button class="ellipsis-button-expanded" (click)="fetchKanbanTasks()">
+          <i class="fa fa-refresh" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="ellipsis-container">
+        <button class="ellipsis-button close" mat-dialog-close><mat-icon class="close-button">close</mat-icon></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="expanded-kanban-tasks-container">
+    <div
+      class="expanded-kanban-task-category"
+      cdkDropList
+      id="toDoTaskList"
+      #toDoTaskList="cdkDropList"
+      [cdkDropListData]="toDoTasks"
+      [cdkDropListConnectedTo]="[inProgressTaskList, completedTaskList, undefinedTaskList]"
+      (cdkDropListDropped)="onTaskDropped($event)"
+    >
+      🔴&nbsp; To Do
+      <div *ngIf="toDoTasks.length === 0" class="no-task-container">
+        <div class="expanded-no-tasks-message">Non-existent, just like my future 😞</div>
+      </div>
+      <div class="expanded-kanban-col-container">
+        <div class="task expanded-kanban-col" *ngFor="let toDoTask of toDoTasks" cdkDrag [cdkDragData]="toDoTask.id">
+          <!-- Task Container Content -->
+          <div class="task-header">
+            <div class="task-title">{{ toDoTask.title }}</div>
+            <div class="vertical-ellipsis-container">
+              <button mat-icon-button style="height: 25px; width: 25px; left: 3px" [matMenuTriggerFor]="menu" aria-label="Task options">
+                <mat-icon style="color: black">more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="openCompleteTaskModal(toDoTask.id)">
+                  <mat-icon>done</mat-icon>
+                  <span>Completed</span>
+                </button>
+                <button mat-menu-item (click)="openEditTaskModal(toDoTask.id)">
+                  <mat-icon>edit_note</mat-icon>
+                  <span>Edit</span>
+                </button>
+                <button mat-menu-item (click)="openDeleteTaskModal(toDoTask.id)">
+                  <mat-icon>delete</mat-icon>
+                  <span>Delete</span>
+                </button>
+              </mat-menu>
+            </div>
+          </div>
+          <div class="labels">
+            <div *ngFor="let label of toDoTask.labels as IKanbanLabel">
+              <div class="label" [style.backgroundColor]="label.colour">
+                {{ label.name }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="expanded-kanban-task-category"
+      id="inProgressTaskList"
+      cdkDropList
+      #inProgressTaskList="cdkDropList"
+      [cdkDropListData]="inProgressTasks"
+      [cdkDropListConnectedTo]="[toDoTaskList, completedTaskList, undefinedTaskList]"
+      (cdkDropListDropped)="onTaskDropped($event)"
+    >
+      🟠&nbsp; In Progress
+      <div *ngIf="inProgressTasks.length === 0" class="no-task-container">
+        <div class="expanded-no-tasks-message">Nothing is in progress 🤷‍♂</div>
+      </div>
+      <div class="expanded-kanban-col-container">
+        <div class="task expanded-kanban-col" *ngFor="let inProgressTask of inProgressTasks" cdkDrag [cdkDragData]="inProgressTask.id">
+          <!-- Task Container Content -->
+          <div class="task-header">
+            <div class="task-title">{{ inProgressTask.title }}</div>
+            <div class="vertical-ellipsis-container">
+              <button mat-icon-button style="height: 25px; width: 25px; left: 3px" [matMenuTriggerFor]="menu" aria-label="Task options">
+                <mat-icon style="color: black">more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="openCompleteTaskModal(inProgressTask.id)">
+                  <mat-icon>done</mat-icon>
+                  <span>Completed</span>
+                </button>
+                <button mat-menu-item (click)="openEditTaskModal(inProgressTask.id)">
+                  <mat-icon>edit_note</mat-icon>
+                  <span>Edit</span>
+                </button>
+                <button mat-menu-item (click)="openDeleteTaskModal(inProgressTask.id)">
+                  <mat-icon>delete</mat-icon>
+                  <span>Delete</span>
+                </button>
+              </mat-menu>
+            </div>
+          </div>
+          <div class="labels">
+            <div *ngFor="let label of inProgressTask.labels as IKanbanLabel">
+              <div class="label" [style.backgroundColor]="label.colour">
+                {{ label.name }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="expanded-kanban-task-category"
+      id="completedTaskList"
+      cdkDropList
+      #completedTaskList="cdkDropList"
+      [cdkDropListData]="completedTasks"
+      [cdkDropListConnectedTo]="[inProgressTaskList, toDoTaskList, undefinedTaskList]"
+      (cdkDropListDropped)="onTaskDropped($event)"
+    >
+      🟢&nbsp; Completed
+      <div *ngIf="completedTasks.length === 0" class="no-task-container">
+        <div class="expanded-no-tasks-message">Code 404 on productivity ❓️</div>
+      </div>
+      <div class="expanded-kanban-col-container">
+        <div class="task expanded-kanban-col" *ngFor="let completedTask of completedTasks" cdkDrag [cdkDragData]="completedTask.id">
+          <!-- Task Container Content -->
+          <div class="task-header">
+            <div class="task-title">{{ completedTask.title }}</div>
+            <div class="vertical-ellipsis-container">
+              <button mat-icon-button style="height: 25px; width: 25px; left: 3px" [matMenuTriggerFor]="menu" aria-label="Task options">
+                <mat-icon style="color: black">more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="openCompleteTaskModal(completedTask.id)">
+                  <mat-icon>done</mat-icon>
+                  <span>Completed</span>
+                </button>
+                <button mat-menu-item (click)="openEditTaskModal(completedTask.id)">
+                  <mat-icon>edit_note</mat-icon>
+                  <span>Edit</span>
+                </button>
+                <button mat-menu-item (click)="openDeleteTaskModal(completedTask.id)">
+                  <mat-icon>delete</mat-icon>
+                  <span>Delete</span>
+                </button>
+              </mat-menu>
+            </div>
+          </div>
+          <div class="labels">
+            <div *ngFor="let label of completedTask.labels as IKanbanLabel">
+              <div class="label" [style.backgroundColor]="label.colour">
+                {{ label.name }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="expanded-kanban-task-category"
+      id="undefinedTaskList"
+      cdkDropList
+      #undefinedTaskList="cdkDropList"
+      [cdkDropListData]="undefinedTasks"
+      [cdkDropListConnectedTo]="[inProgressTaskList, completedTaskList, completedTaskList]"
+      (cdkDropListDropped)="onTaskDropped($event)"
+    >
+      ⚫&nbsp; Undefined
+      <div *ngIf="undefinedTasks.length === 0" class="no-task-container">
+        <div class="expanded-no-tasks-message">Here but not really here 👻</div>
+      </div>
+      <div class="expanded-kanban-col-container">
+        <div class="task expanded-kanban-col" *ngFor="let undefinedTask of undefinedTasks" cdkDrag [cdkDragData]="undefinedTask.id">
+          <!-- Task Container Content -->
+          <div class="task-header">
+            <div class="task-title">{{ undefinedTask.title }}</div>
+            <div class="vertical-ellipsis-container">
+              <button mat-icon-button style="height: 25px; width: 25px; left: 3px" [matMenuTriggerFor]="menu" aria-label="Task options">
+                <mat-icon style="color: black">more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="openCompleteTaskModal(undefinedTask.id)">
+                  <mat-icon>done</mat-icon>
+                  <span>Completed</span>
+                </button>
+                <button mat-menu-item (click)="openEditTaskModal(undefinedTask.id)">
+                  <mat-icon>edit_note</mat-icon>
+                  <span>Edit</span>
+                </button>
+                <button mat-menu-item (click)="openDeleteTaskModal(undefinedTask.id)">
+                  <mat-icon>delete</mat-icon>
+                  <span>Delete</span>
+                </button>
+              </mat-menu>
+            </div>
+          </div>
+          <div class="labels">
+            <div *ngFor="let label of undefinedTask.labels as IKanbanLabel">
+              <div class="label" [style.backgroundColor]="label.colour">
+                {{ label.name }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

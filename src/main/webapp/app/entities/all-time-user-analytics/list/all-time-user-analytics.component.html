@@ -1,0 +1,158 @@
+<div>
+  <h2 id="page-heading" data-cy="AllTimeUserAnalyticsHeading">
+    <span>All Time User Analytics</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-all-time-user-analytics"
+        [routerLink]="['/all-time-user-analytics/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new All Time User Analytics </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="allTimeUserAnalytics?.length === 0">
+    <span>No All Time User Analytics found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="allTimeUserAnalytics && allTimeUserAnalytics.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="totalStudyTime">
+            <div class="d-flex">
+              <span>Total Study Time</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="totalPomodoroSession">
+            <div class="d-flex">
+              <span>Total Pomodoro Session</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dailyStreaks">
+            <div class="d-flex">
+              <span>Daily Streaks</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="mostFocusedPeriod">
+            <div class="d-flex">
+              <span>Most Focused Period</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="taskCompletionRate">
+            <div class="d-flex">
+              <span>Task Completion Rate</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="averageFocusDuration">
+            <div class="d-flex">
+              <span>Average Focus Duration</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="focusCount">
+            <div class="d-flex">
+              <span>Focus Count</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="totalFocusDuration">
+            <div class="d-flex">
+              <span>Total Focus Duration</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="sessionRecord">
+            <div class="d-flex">
+              <span>Session Record</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="totalBreakTime">
+            <div class="d-flex">
+              <span>Total Break Time</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="averageBreakDuration">
+            <div class="d-flex">
+              <span>Average Break Duration</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let allTimeUserAnalytics of allTimeUserAnalytics; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/all-time-user-analytics', allTimeUserAnalytics.id, 'view']">{{ allTimeUserAnalytics.id }}</a>
+          </td>
+          <td>{{ allTimeUserAnalytics.totalStudyTime }}</td>
+          <td>{{ allTimeUserAnalytics.totalPomodoroSession }}</td>
+          <td>{{ allTimeUserAnalytics.dailyStreaks }}</td>
+          <td>{{ allTimeUserAnalytics.mostFocusedPeriod | formatMediumDatetime }}</td>
+          <td>{{ allTimeUserAnalytics.taskCompletionRate }}</td>
+          <td>{{ allTimeUserAnalytics.averageFocusDuration }}</td>
+          <td>{{ allTimeUserAnalytics.focusCount }}</td>
+          <td>{{ allTimeUserAnalytics.totalFocusDuration }}</td>
+          <td>{{ allTimeUserAnalytics.sessionRecord }}</td>
+          <td>{{ allTimeUserAnalytics.totalBreakTime }}</td>
+          <td>{{ allTimeUserAnalytics.averageBreakDuration }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/all-time-user-analytics', allTimeUserAnalytics.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/all-time-user-analytics', allTimeUserAnalytics.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(allTimeUserAnalytics)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

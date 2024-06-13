@@ -1,0 +1,94 @@
+@import 'content/scss/global';
+
+h1,
+p {
+  color: var(--color-text);
+}
+
+.playlist-container {
+  height: 98%;
+  width: 28vw;
+  background-color: color-mix(in srgb, var(--color-bg) 80%, transparent);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: #444444;
+}
+
+.playlist-header {
+  text-align: left;
+}
+
+.playlist-header h3 {
+  font-weight: bold;
+  color: var(--color-text);
+}
+
+.playlist-header p {
+  font-size: 1.1rem;
+  color: var(--color-text);
+}
+
+.input-group {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.input-group input {
+  flex: 1; /* Take remaining space */
+  outline-color: var(--color-action-button);
+  box-shadow: 0 0 0 0.5px var(--color-action-button);
+  border-radius: 12px;
+}
+
+.input-group button {
+  flex-shrink: 0; /* Don't shrink */
+}
+
+input[type='text'] {
+  width: 100%;
+  padding: 10px;
+}
+
+.enter_btn {
+  border-radius: 12px;
+  background-color: var(--color-action-button);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.enter_btn:hover {
+  background-color: var(--color-action-button);
+  color: white;
+}
+
+.playlist-frame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.custom_playlist_title {
+  color: var(--color-text);
+  font-weight: bold;
+}
+
+.playlist_desc {
+  font-size: 16px;
+  color: var(--color-text);
+}
+
+.ellipsis-button {
+  align-self: flex-end;
+  background-color: transparent;
+  border: none;
+  color: rgba($primary-color-dark-blue, 1);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0;
+}

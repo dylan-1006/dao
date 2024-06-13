@@ -1,0 +1,38 @@
+{
+  "applications": "*",
+  "changelogDate": "20240309231752",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "pomodoro_timer",
+  "fields": [
+    {
+      "fieldName": "startTime",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "endTime",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "state",
+      "fieldType": "TimerState",
+      "fieldValues": "STARTED,PAUSED,RESET,COMPLETED"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "TimerType",
+      "fieldValues": "POMODORO_TIMER,SHORT_BREAK_TIMER,LONG_BREAK_TIMER"
+    },
+    {
+      "fieldName": "duration",
+      "fieldType": "Duration"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "PomodoroTimer",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "no"
+}

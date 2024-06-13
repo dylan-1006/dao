@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="kanbanTaskComment">
+      <h2 data-cy="kanbanTaskCommentDetailsHeading"><span>Kanban Task Comment</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ kanbanTaskComment.id }}</span>
+        </dd>
+        <dt><span>Content</span></dt>
+        <dd>
+          <span>{{ kanbanTaskComment.content }}</span>
+        </dd>
+        <dt><span>Time Stamp</span></dt>
+        <dd>
+          <span>{{ kanbanTaskComment.timeStamp | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Author</span></dt>
+        <dd>
+          <div *ngIf="kanbanTaskComment.author">
+            <a [routerLink]="['/application-user', kanbanTaskComment.author.id, 'view']">{{ kanbanTaskComment.author.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Kanban Task</span></dt>
+        <dd>
+          <div *ngIf="kanbanTaskComment.kanbanTask">
+            <a [routerLink]="['/kanban-task', kanbanTaskComment.kanbanTask.id, 'view']">{{ kanbanTaskComment.kanbanTask.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/kanban-task-comment', kanbanTaskComment.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

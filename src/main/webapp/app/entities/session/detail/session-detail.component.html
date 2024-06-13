@@ -1,0 +1,72 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="session">
+      <h2 data-cy="sessionDetailsHeading"><span>Session</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ session.id }}</span>
+        </dd>
+        <dt><span>Title</span></dt>
+        <dd>
+          <span>{{ session.title }}</span>
+        </dd>
+        <dt><span>Join Code</span></dt>
+        <dd>
+          <span>{{ session.joinCode }}</span>
+        </dd>
+        <dt><span>User Id List</span></dt>
+        <dd>
+          <span>{{ session.userIdList }}</span>
+        </dd>
+        <dt><span>Start Time</span></dt>
+        <dd>
+          <span>{{ session.startTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>End Time</span></dt>
+        <dd>
+          <span>{{ session.endTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Session Analytic</span></dt>
+        <dd>
+          <div *ngIf="session.sessionAnalytic">
+            <a [routerLink]="['/session-analytic', session.sessionAnalytic.id, 'view']">{{ session.sessionAnalytic.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Kanban Board</span></dt>
+        <dd>
+          <div *ngIf="session.kanbanBoard">
+            <a [routerLink]="['/kanban-board', session.kanbanBoard.id, 'view']">{{ session.kanbanBoard.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Pomodoro Timer</span></dt>
+        <dd>
+          <div *ngIf="session.pomodoroTimer">
+            <a [routerLink]="['/pomodoro-timer', session.pomodoroTimer.id, 'view']">{{ session.pomodoroTimer.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Playlist</span></dt>
+        <dd>
+          <div *ngIf="session.playlist">
+            <a [routerLink]="['/playlist', session.playlist.id, 'view']">{{ session.playlist.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/session', session.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+{
+  "applications": "*",
+  "changelogDate": "20240309231750",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "milestone",
+  "fields": [
+    {
+      "fieldName": "requiredHours",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "achievements",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Milestone",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "reward",
+      "otherEntityRelationshipName": "milestone",
+      "relationshipName": "rewards",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}

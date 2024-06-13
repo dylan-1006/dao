@@ -1,0 +1,39 @@
+@import 'content/scss/global';
+
+.toolbar {
+  display: flex;
+  padding: 2rem;
+  height: 72px;
+  gap: 20px;
+  justify-content: space-around;
+  align-items: center;
+  background-color: color-mix(in srgb, var(--color-bg) 80%, transparent);
+  border-radius: 20px;
+}
+
+.toolbar-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.toolbar-button:hover {
+  transform: scale(1.1);
+}
+
+.toolbar-button i {
+  color: var(--color-text);
+}
+
+.toolbar-button span {
+  color: var(--color-text);
+  margin-top: 5px;
+}
+
+.timer {
+  display: none;
+}

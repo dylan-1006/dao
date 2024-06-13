@@ -1,0 +1,66 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="sessionAnalytic">
+      <h2 data-cy="sessionAnalyticDetailsHeading"><span>Session Analytic</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ sessionAnalytic.id }}</span>
+        </dd>
+        <dt><span>Session Duration</span></dt>
+        <dd>
+          <span>{{ sessionAnalytic.sessionDuration }}</span>
+        </dd>
+        <dt><span>Task Total</span></dt>
+        <dd>
+          <span>{{ sessionAnalytic.taskTotal }}</span>
+        </dd>
+        <dt><span>Task Completed</span></dt>
+        <dd>
+          <span>{{ sessionAnalytic.taskCompleted }}</span>
+        </dd>
+        <dt><span>Points Gained</span></dt>
+        <dd>
+          <span>{{ sessionAnalytic.pointsGained }}</span>
+        </dd>
+        <dt><span>Num Of Pomodoro Finished</span></dt>
+        <dd>
+          <span>{{ sessionAnalytic.numOfPomodoroFinished }}</span>
+        </dd>
+        <dt><span>Praise Count</span></dt>
+        <dd>
+          <span>{{ sessionAnalytic.praiseCount }}</span>
+        </dd>
+        <dt><span>User</span></dt>
+        <dd>
+          <div *ngIf="sessionAnalytic.user">
+            <a [routerLink]="['/application-user', sessionAnalytic.user.id, 'view']">{{ sessionAnalytic.user.id }}</a>
+          </div>
+        </dd>
+        <dt><span>All Time User Analytics</span></dt>
+        <dd>
+          <div *ngIf="sessionAnalytic.allTimeUserAnalytics">
+            <a [routerLink]="['/all-time-user-analytics', sessionAnalytic.allTimeUserAnalytics.id, 'view']">{{
+              sessionAnalytic.allTimeUserAnalytics.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/session-analytic', sessionAnalytic.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

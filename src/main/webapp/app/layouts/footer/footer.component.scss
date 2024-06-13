@@ -1,0 +1,13 @@
+@import 'content/scss/global';
+
+.container-fluid {
+}
+
+footer {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  color: $primary-color-dark-blue;
+  background-color: $neutral-color-soft-pink;
+}

@@ -1,0 +1,60 @@
+<div class="chat-container">
+  <div class="chat-header d-flex align-items-center mb-3">
+    <i class="material-icons mr-4">chat</i>
+    <h3 class="mx-4">Chat</h3>
+  </div>
+
+  <!-- Pinned messages section -->
+  <div class="pinned-messages" *ngIf="pinnedMessages.length > 0">
+    <div class="message" *ngFor="let message of pinnedMessages">
+      <div>
+        <span class="pinned-message-content">{{ message.content }}</span>
+      </div>
+      <div>
+        <button class="pin-btn" (click)="togglePin(message)">
+          <i class="material-icons">close</i>
+          <!-- Use a pin icon -->
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Regular chat messages section -->
+  <div class="chat-messages" #chatMessages>
+    <div class="message" *ngFor="let message of messages">
+      <div
+        class="message-info"
+        [ngClass]="{ 'sent-info': message.applicationUser?.id === userId, 'received-info': message.applicationUser?.id !== userId }"
+      >
+        <span>User #{{ message.applicationUser?.id }}, {{ dayjs(message.sentTime).format('HH:mm') }}</span>
+      </div>
+      <div class="message-content">
+        <div class="message-box sent" *ngIf="message.applicationUser?.id === userId">
+          <div>
+            <span class="content">{{ message.content }}</span>
+          </div>
+          <div>
+            <button class="pin-btn" *ngIf="!message.isPinned" (click)="togglePin(message)">
+              <i class="material-icons">push_pin_outline</i>
+            </button>
+          </div>
+        </div>
+        <div class="message-box received" *ngIf="message.applicationUser?.id !== userId">
+          <div>
+            <span class="content">{{ message.content }}</span>
+          </div>
+          <div>
+            <button class="pin-btn" *ngIf="!message.isPinned" (click)="togglePin(message)">
+              <i class="material-icons">push_pin_outline</i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-input">
+    <input type="text" [(ngModel)]="newMessage" placeholder="Type your message..." (keyup.enter)="sendMessage()" />
+    <button class="btn" (click)="sendMessage()">Send</button>
+  </div>
+</div>

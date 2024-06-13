@@ -1,0 +1,128 @@
+<div class="greeting-banner">
+  <p class="greeting-message">Welcome to Our Community!</p>
+  <!-- These divs will be shown or hidden depending on the user's login status -->
+  <div *ngIf="this.loggedInApplicationUser" class="user-greeting">What's your plan today User #{{ this.loggedInApplicationUser.id }}?</div>
+  <!--<p>welcome-message works!</p>-->
+  <!--<div *ngIf="this.loggedInApplicationUser">hello user #{{ this.loggedInApplicationUser.id }}</div>-->
+  <!--<div *ngIf="this.loggedInUser">hello {{ this.loggedInUser.firstName }}</div>-->
+
+  <!--</head>-->
+  <!--<p>Discover the latest functionality to enhance your experience. Our new feature allows you to seamlessly integrate with multiple platforms.</p>-->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <body>
+    <!--<div class="app-intro-container">-->
+    <!--  <div class="app-description">-->
+    <!--    <p>Welcome to DAO, the ultimate productivity platform that blends functionality with aesthetics to transform your workflow. From task management to music integration, DAO offers an all-in-one solution for your productivity and relaxation needs.</p>-->
+    <!--  </div>-->
+    <!--  <div class="app-features">-->
+    <!--    <ul>-->
+    <!--      <li>Customizable Pomodoro Timer</li>-->
+    <!--      <li>Kanban Board</li>-->
+    <!--      <li>Embedded Spotify Playlist</li>-->
+    <!--      <li>Group Chat</li>-->
+    <!--      <li>Accessibility Features for an inclusive user experience</li>-->
+    <!--    </ul>-->
+    <!--  </div>-->
+    <!--</div>-->
+
+    <!--    <p>Welcome to DAO, the ultimate productivity platform that blends functionality with aesthetics to transform your workflow. From task management to music integration, DAO offers an all-in-one solution for your productivity and relaxation needs.</p>-->
+    <!--    <ul>-->
+    <!--      <li>Customizable Pomodoro Timer</li>-->
+    <!--      <li>Kanban Board</li>-->
+    <!--      <li>Embedded Spotify Playlist</li>-->
+    <!--      <li>Group Chat</li>-->
+    <!--      <li>Accessibility Features for an inclusive user experience</li>-->
+    <!--    </ul>-->
+
+    <div class="popup-container">
+      <div class="content-container">
+        <div class="content-section">
+          <p>
+            Welcome to DAO, the ultimate productivity platform that blends functionality with aesthetics to transform your workflow. From
+            task management to music integration, DAO offers an all-in-one solution for your productivity and relaxation needs.
+          </p>
+          <!--      <ul>-->
+          <!--        <li>Customizable Pomodoro Timer</li>-->
+          <!--        <li>Kanban Board</li>-->
+          <!--        <li>Embedded Spotify Playlist</li>-->
+          <!--        <li>Group Chat</li>-->
+          <!--        <li>Accessibility Features for an inclusive user experience</li>-->
+          <!--      </ul>-->
+          <h2>Creating New Session</h2>
+          <img src="../../content/images/background-images/feature1.jpg" />
+          <p>
+            Embark on a focused and productive journey with our 'New Session' feature. Designed to streamline your workflow, creating a new
+            session allows you to carve out dedicated time for your tasks with minimal distractions. By establishing a new session, you
+            unlock a personalized, distraction-free zone where your goals take the front seat, enabling you to tackle your to-do list with
+            unprecedented clarity and efficiency.
+          </p>
+        </div>
+
+        <div class="content-section">
+          <h2>Sign-In</h2>
+          <img src="../../content/images/background-images/sign.jpg" />
+          <p>
+            Unlock the full potential of our platform by signing in. Gain access to an array of exclusive features, from customizing your
+            productivity timers to syncing your favorite Spotify playlists for an energizing backdrop to your work. Signing in allows you to
+            personalize your experience, save your preferences, and keep track of your progress over time.
+          </p>
+        </div>
+
+        <div class="content-section">
+          <h2>Pomodoro Timer</h2>
+          <img src="../../content/images/background-images/Timer.jpg" />
+          <p>
+            Maximize your productivity with our built-in Pomodoro Timer. This feature employs the Pomodoro Technique to break down work into
+            intervals, traditionally 25 minutes in length, separated by short breaks. It's an effective way to manage time and maintain
+            focus, all while ensuring you're taking the necessary pauses to recharge and prevent burnout.
+          </p>
+        </div>
+
+        <div class="content-section">
+          <h2>Spotify Playlist</h2>
+          <img src="../../content/images/background-images/spotify.jpg" />
+          <p>
+            Immerse yourself in the music that moves you with our Spotify Playlist Integration. Whether you're focusing on work or enjoying
+            a break, your favorite tunes are just a click away. Access your personalized playlists, discover new tracks, and control your
+            music right from our platform—enabling a soundtrack that perfectly suits your mood and activities.
+          </p>
+        </div>
+        <div class="content-section">
+          <h2>Kanban Board</h2>
+          <img src="../../content/images/background-images/Kanban.jpg" />
+          <p>
+            Our Kanban Board is a powerful tool for organizing tasks and managing projects efficiently. With its simple drag-and-drop
+            interface, you can create, assign, and track tasks through various stages of completion. It encourages transparency and enhances
+            productivity by providing a clear overview of the progress within each project phase.
+          </p>
+        </div>
+        <div class="content-section">
+          <h2>Group Chat Feature</h2>
+          <img src="../../content/images/background-images/chat.jpg" />
+          <p>
+            Enhance your communication with our intuitive Chat feature, designed for seamless interaction within our platform. Whether
+            you're collaborating on a project or simply connecting with your community, our Chat offers a user-friendly interface with
+            real-time messaging capabilities. Its streamlined design ensures you can easily exchange ideas, share updates, and stay
+            connected with your team or friends anytime, anywhere.
+          </p>
+        </div>
+        <div class="content-section">
+          <h2>Accessibility Features</h2>
+          <img src="../../content/images/background-images/Accessibility1.jpg" />
+          <p>
+            We are committed to creating an inclusive environment for all users. Our accessibility features are designed to cater to diverse
+            needs. Choose from a variety of high-contrast themes that reduce eye strain and make reading more comfortable, ensuring clarity
+            even for users with visual impairments. Customize the font sizes within the app to make text larger or smaller to suit your
+            visual preference. This feature aims to support users with differing sight capabilities, ensuring that everyone can navigate and
+            use our platform with ease.
+          </p>
+          <img src="../../content/images/background-images/Accessibility2.jpg" />
+          <p>
+            Enjoy a seamless, user-centric experience with our app's inclusive design. Whether it's adjusting the visual settings or
+            utilizing keyboard shortcuts for navigation, we strive to make our platform accessible to everyone.
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</div>

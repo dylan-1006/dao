@@ -1,0 +1,163 @@
+/* styles.css */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', Arial, sans-serif;
+  //background: #faa9ba;
+  background: Transparent;
+  height: 100vh;
+  display: flex;
+  //justify-content: center;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.popup-container {
+  width: 100%; /* Adjust width as necessary */
+  height: 100%;
+  background-color: transparent;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column; /* Stacks content sections vertically */
+  align-items: center;
+  width: 100%;
+}
+
+.content-section {
+  width: 90%; /* Adjust width based on design preference */
+  margin-bottom: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content-section img {
+  width: 100%; /* Adjust image width as needed */
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.content-section h2 {
+  color: white;
+  margin-bottom: 10px;
+  text-align: center; /* Centers the title headings */
+}
+
+.content-section p {
+  text-align: justify; /* Justifies the paragraph content */
+  color: white;
+  width: 100%; /* You might want to adjust this for optimal reading length */
+}
+
+/* Style for scrollbar */
+.popup-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.popup-container::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.popup-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.greeting-popup {
+  background: #36393f; /* Discord-like dark background for the modal */
+  color: #ffffff; /* White text for contrast */
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+  text-align: center; /* Center text for a clean look */
+  width: 90%; /* Adjust width as needed, maybe use a max-width */
+  max-width: 400px; /* Maximum width for the modal */
+}
+
+/* Greeting message style */
+.greeting-message {
+  font-size: 18rem; /* Larger text for the welcome message */
+  margin-bottom: 10px; /* Space below the welcome message */
+}
+
+/* User-specific greeting style */
+.greeting-banner {
+  //background: #5664f6; /* Discord's brand color for the banner */
+  background: transparent; /* Discord's brand color for the banner */
+  color: #ffffff; /* White text for contrast */
+  width: 100%; /* Full-width banner */
+  padding: 8px 0; /* Padding top and bottom */
+  text-align: center; /* Center text for a clean look */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Greeting message style */
+.greeting-message {
+  font-size: 2.8rem; /* Increased font size for the welcome message */
+  font-weight: bold; /* Bold font for emphasis */
+  margin-bottom: 0.5rem; /* Add some space below the greeting message */
+}
+
+/* User-specific greeting style */
+.user-greeting {
+  /* Increased font size for user-specific greetings */
+  font-weight: bolder; /* Normal font weight for user greeting */
+  margin-top: 0.5rem; /* Space above the user-specific greeting */
+  font-size: 1.4rem;
+}
+
+//Instead of a pop up box. I want it to be in the center of the page and below them will be a description of the website as well as a list of features that are present
+/* Container for the app introduction and features list */
+.app-intro-features-container {
+  display: flex; /* Use flexbox for layout */
+  width: 100%; /* Full width of the container */
+  align-items: flex-start; /* Align items to the start of the flex container */
+  text-align: left; /* Align text to the left */
+  color: white; /* Text color */
+}
+
+/* Container for the app introduction and feature list taking 40% of the width */
+.app-intro-container {
+  width: 40%; /* Take up 40% of the width */
+  text-align: left; /* Align text to the left */
+  padding: 10px; /* Add padding around the content */
+  color: white; /* Text color */
+  margin-right: 10%; /* Spacing between the two main containers */
+  font-size: 2.5rem;
+}
+
+.app-description,
+.app-features ul,
+.app-features li {
+  font-size: 2.5rem;
+  color: white; /* Text color */
+  text-align: left; /* Align text to the left */
+  /* Inherits styles from .app-intro-container */
+}
+
+/* Container for the session creation and other features content */
+.content-sections-container {
+  width: 50%; /* Remaining width for content sections */
+  text-align: left; /* Center-align the content sections */
+  padding: 50px; /* Add padding around the content */
+  font-size: 2.5rem;
+}
+
+//.app-features ul, .app-features li {
+//  text-align: left; /* Aligns the text to the left */
+//  /* Rest of the styles remain the same */
+//}
+//
+///* Adjustments for paragraph text within content sections */
+//.content-section p {
+//  text-align: left; /* Aligns the paragraph text to the left */
+//  color: white;
+//  width: 100%;
+//}

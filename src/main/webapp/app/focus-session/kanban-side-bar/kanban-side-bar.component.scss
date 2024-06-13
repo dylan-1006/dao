@@ -1,0 +1,252 @@
+@import 'content/scss/global';
+
+p {
+  color: var(--color-text);
+}
+
+.kanban-div {
+  height: 98%;
+  width: 28vw;
+  background-color: color-mix(in srgb, var(--color-bg) 80%, transparent);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: #444444;
+}
+
+.kanban-header {
+  display: flex;
+  align-items: start;
+  gap: 2vw;
+  margin-bottom: 1rem;
+  justify-content: space-between;
+}
+
+.kanban-header-left {
+  display: flex;
+  align-items: start;
+}
+
+.kanban-header-right {
+  display: flex;
+  align-items: start;
+  margin-right: 0.8rem;
+  margin-top: 0.4rem;
+  gap: 0.3125rem;
+}
+
+.kanban-icon {
+  height: 100%;
+  width: auto;
+  display: flex;
+  align-items: center;
+}
+
+.kanban-header p,
+i,
+mat-icon {
+  color: var(--color-text);
+}
+
+.no-tasks-message {
+  color: var(--color-text);
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  font-weight: lighter;
+  font-size: 1.188vmax;
+}
+
+.kanban-title {
+  font-weight: bold;
+  color: var(--color-text);
+  font-family: 'Futura', Arial, sans-serif;
+  white-space: nowrap;
+  max-width: 305px;
+  overflow: hidden;
+  font-size: 1.6vmax;
+  text-overflow: ellipsis;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 10px;
+}
+
+.kanban-title:hover {
+  background-color: var(--color-div-hover);
+  border-radius: 12px;
+}
+
+.kanban-title-input {
+  border-radius: 12px;
+  outline: 0.5px solid blue;
+  background-color: white;
+  color: black;
+  font-size: 1.6vmax;
+  font-weight: bold;
+  font-family: 'Futura', Arial, sans-serif;
+  position: absolute;
+  width: inherit;
+  overflow: auto;
+  text-overflow: ellipsis;
+  transition: width 0.4s ease-in-out;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 10px;
+}
+
+.kanban-title-input:focus {
+  width: inherit;
+}
+
+.kanban-icon i {
+  font-size: 2.3vmax;
+  color: var(--color-text);
+}
+
+.add-task-button {
+  padding: 0.5rem 1.7rem;
+  background-color: var(--color-action-button);
+  border-radius: 20px;
+  border: none;
+  color: white;
+  font-size: 0.8rem;
+  cursor: pointer;
+  text-align: center;
+}
+
+.add-task-button-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 0;
+}
+
+.kanban-board {
+  display: flex;
+  align-items: flex-start;
+  justify-content: start;
+  gap: 0.5rem;
+  padding-top: 18px;
+  overflow: hidden;
+  height: 100%;
+  flex-direction: column;
+  align-self: flex-start;
+}
+
+.heading {
+  margin-left: 0;
+  font-size: 1.7vmax;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.kanban-task-category {
+  padding-top: 12px;
+  width: 100%;
+  min-height: 120px;
+  flex-shrink: 0;
+}
+
+.task {
+  background: white;
+  color: rgba($primary-color-dark-blue, 1);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  cursor: move;
+  display: flex;
+  margin-right: 0.2rem;
+  margin-bottom: 1rem;
+  flex-direction: column;
+  height: 6.4rem;
+}
+
+.row {
+  padding-left: 0;
+  margin-left: 0;
+  margin-right: 0;
+  justify-content: space-between;
+}
+
+.kanban-col {
+  width: 195px;
+  height: 6.4rem;
+  justify-content: space-between;
+}
+
+.ellipsis-button {
+  background-color: transparent;
+  border: none;
+  color: rgba($primary-color-dark-blue, 1);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+.ellipsis-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  background-color: transparent;
+  padding-top: 5px;
+}
+
+.refresh-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  background-color: transparent;
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.task-title {
+  font-weight: bold;
+  word-wrap: break-word;
+  max-width: 85%;
+}
+
+.vertical-ellipsis-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mat-icon-button {
+  width: 20px !important;
+  height: 30px !important;
+  line-height: 20px !important;
+  outline: none !important;
+}
+
+.labels {
+  display: flex;
+  align-items: center;
+  margin-left: 0;
+  flex-wrap: wrap;
+  overflow: clip;
+  height: 1.25rem;
+}
+
+.assignees span {
+  font-size: 0.8rem;
+  color: rgba($primary-color-dark-blue, 0.6);
+}
+
+.label {
+  padding: 0.0625rem 0.625rem;
+  margin-right: 0.3125rem;
+  border-radius: 20px;
+  color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 4rem;
+}

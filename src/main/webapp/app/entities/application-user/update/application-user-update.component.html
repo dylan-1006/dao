@@ -1,0 +1,111 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-application-user-heading" data-cy="ApplicationUserCreateUpdateHeading">Create or edit a Application User</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_internalUser">Internal User</label>
+          <select
+            class="form-control"
+            id="field_internalUser"
+            data-cy="internalUser"
+            name="internalUser"
+            formControlName="internalUser"
+            [compareWith]="compareUser"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="userOption" *ngFor="let userOption of usersSharedCollection">{{ userOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_allTimeAnalytics">All Time Analytics</label>
+          <select
+            class="form-control"
+            id="field_allTimeAnalytics"
+            data-cy="allTimeAnalytics"
+            name="allTimeAnalytics"
+            formControlName="allTimeAnalytics"
+            [compareWith]="compareAllTimeUserAnalytics"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="allTimeUserAnalyticsOption" *ngFor="let allTimeUserAnalyticsOption of allTimeAnalyticsCollection">
+              {{ allTimeUserAnalyticsOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_currentMilestone">Current Milestone</label>
+          <select
+            class="form-control"
+            id="field_currentMilestone"
+            data-cy="currentMilestone"
+            name="currentMilestone"
+            formControlName="currentMilestone"
+            [compareWith]="compareMilestone"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="milestoneOption" *ngFor="let milestoneOption of milestonesSharedCollection">{{ milestoneOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_kanbanTask">Kanban Task</label>
+          <select
+            class="form-control"
+            id="field_kanbanTask"
+            data-cy="kanbanTask"
+            name="kanbanTask"
+            formControlName="kanbanTask"
+            [compareWith]="compareKanbanTask"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="kanbanTaskOption" *ngFor="let kanbanTaskOption of kanbanTasksSharedCollection">
+              {{ kanbanTaskOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_session">Session</label>
+          <select
+            class="form-control"
+            id="field_session"
+            data-cy="session"
+            name="session"
+            formControlName="session"
+            [compareWith]="compareSession"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="sessionOption" *ngFor="let sessionOption of sessionsSharedCollection">{{ sessionOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

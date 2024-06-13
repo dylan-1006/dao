@@ -1,0 +1,65 @@
+{
+  "applications": "*",
+  "changelogDate": "20240309231747",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "kanban_task",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "taskStatus",
+      "fieldType": "TaskStatus",
+      "fieldValues": "TODO,IN_PROGRESS,DONE,UNDEFINED"
+    },
+    {
+      "fieldName": "dueDate",
+      "fieldType": "Instant"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "KanbanTask",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "applicationUser",
+      "ownerSide": true,
+      "relationshipName": "author",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "applicationUser",
+      "otherEntityRelationshipName": "kanbanTask",
+      "relationshipName": "assignees",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "kanbanTaskComment",
+      "otherEntityRelationshipName": "kanbanTask",
+      "relationshipName": "comments",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "kanbanLabel",
+      "otherEntityRelationshipName": "tasks",
+      "ownerSide": true,
+      "relationshipName": "labels",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "kanbanBoard",
+      "otherEntityRelationshipName": "tasks",
+      "relationshipName": "kanbanBoard",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

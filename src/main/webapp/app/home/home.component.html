@@ -1,0 +1,91 @@
+<div class="card" [ngClass]="fsValue">
+  <img
+    src="../../content/images/background-images/landing-page-lake-background.jpeg"
+    class="card-img"
+    alt="Scenic, calming, colorful lake with mountain background"
+  />
+  <div class="card-img-overlay p-0 m-0" style="background-color: rgba(0, 0, 0, 0.1)">
+    <jhi-navbar></jhi-navbar>
+    <div class="container-fluid h-100 d-flex align-items-center">
+      <div class="content">
+        <div class="row flex-lg-row align-items-center">
+          <div class="col-lg-12">
+            <div class="title-section d-flex flex-column justify-content-center align-items-start">
+              <h1 class="display-1 fw-bold text-body-emphasis lh-1 mb-3">Focus Together.</h1>
+              <h1 class="display-1 fw-bold text-body-emphasis lh-1 mb-5">Achieve More.</h1>
+              <h4 class="lead mb-5">
+                Supercharge your study sessions with real-time collaboration<br />and stay focused in a dedicated workspace.
+              </h4>
+              <div class="d-flex flex-column justify-content-center align-items-start">
+                <div class="row align-items-center container-vertical-center">
+                  <div class="col-auto container-vertical-center">
+                    <button type="button" (click)="createNewSession()" class="btn start-session-btn btn-primary btn-lg px-4 my-auto">
+                      New Session
+                    </button>
+                  </div>
+                  <div class="mx-4 col-auto">
+                    <form #joinForm="ngForm" (ngSubmit)="joinExistingSession()">
+                      <div class="input-group" *ngIf="!errorJoining">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Enter 5-digit session code"
+                          name="joinCode"
+                          [(ngModel)]="code.code"
+                          [ngClass]="{
+                            'is-invalid':
+                              joinForm.controls.joinCode && joinForm.controls.joinCode.invalid && joinForm.controls.joinCode.touched
+                          }"
+                          pattern="[1-9]\d{4}"
+                          style="width: 200px"
+                        />
+                        <button
+                          type="submit"
+                          class="btn start-session-btn btn-primary btn-lg px-4"
+                          [disabled]="
+                            joinForm.controls.joinCode.invalid ||
+                            !joinForm.controls.joinCode.value ||
+                            joinForm.controls.joinCode.value.toString().length < 4
+                          "
+                        >
+                          Join
+                        </button>
+                      </div>
+                      <div class="input-group" *ngIf="errorJoining">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Session not found"
+                          name="joinCode"
+                          [(ngModel)]="code.code"
+                          [ngClass]="{
+                            'is-invalid':
+                              joinForm.controls.joinCode && joinForm.controls.joinCode.invalid && joinForm.controls.joinCode.touched
+                          }"
+                          pattern="[1-9]\d{4}"
+                          style="width: 200px"
+                        />
+                        <button
+                          type="submit"
+                          class="btn start-session-btn btn-primary btn-lg px-4 errorMessage"
+                          [disabled]="
+                            joinForm.controls.joinCode.invalid ||
+                            !joinForm.controls.joinCode.value ||
+                            joinForm.controls.joinCode.value.toString().length < 4
+                          "
+                        >
+                          Join
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<p class="disclaimer">You are accessing an experimental web application developed<br />by participants of the Team Project 2024 module</p>

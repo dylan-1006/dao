@@ -1,0 +1,33 @@
+{
+  "applications": "*",
+  "changelogDate": "20240309231745",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "praise",
+  "fields": [
+    {
+      "fieldName": "praiseMessage",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Praise",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "applicationUser",
+      "ownerSide": true,
+      "relationshipName": "sender",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "applicationUser",
+      "ownerSide": true,
+      "relationshipName": "receiver",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "no"
+}
